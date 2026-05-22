@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders Admin</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+
+        body{
+            font-family:'Poppins',sans-serif;
+            background:#fff6f8;
+        }
+
+        .container{
+            max-width:1300px;
+            margin:auto;
+            padding:50px 8%;
+        }
+
+        h1{
+            font-size:46px;
+            margin-bottom:30px;
+            color:#2b2b2b;
+        }
+
+        .filter{
+            background:white;
+            border-radius:28px;
+            padding:24px;
+            margin-bottom:30px;
+            box-shadow:0 12px 30px rgba(0,0,0,.06);
+        }
+
+        .filter form{
+            display:grid;
+            grid-template-columns:1.5fr 1fr 1fr auto auto;
+            gap:14px;
+            align-items:center;
+        }
+
+        .filter input,
+        .filter select{
+            width:100%;
+            padding:14px 16px;
+            border-radius:14px;
+            border:1px solid #eee;
+            font-family:'Poppins',sans-serif;
+            outline:none;
+            background:#fffaf7;
+        }
+
+        .filter button,
+        .filter a{
+            border:none;
+            background:#b03052;
+            color:white;
+            padding:14px 18px;
+            border-radius:14px;
+            font-weight:600;
+            cursor:pointer;
+            text-decoration:none;
+            text-align:center;
+            white-space:nowrap;
+        }
+
+        .filter a{
+            background:#111827;
+        }
+
+        .order{
+            background:white;
+            border-radius:28px;
+            padding:32px;
+            margin-bottom:28px;
+            box-shadow:0 12px 30px rgba(0,0,0,.06);
+        }
+
+        .top{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:25px;
+            gap:15px;
+        }
+
+        .badges{
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+        }
+
+        .status{
+            background:#fff0f5;
+            color:#b03052;
+            padding:10px 16px;
+            border-radius:12px;
+            font-weight:600;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:25px;
+        }
+
+        .line{
+            margin-bottom:14px;
+            color:#555;
+            line-height:1.7;
+        }
+
+        .price{
+            font-size:30px;
+            color:#b03052;
+            font-weight:700;
+            margin-top:25px;
+        }
+
+        .items{
+            margin-top:25px;
+            padding-top:20px;
+            border-top:1px solid #eee;
+        }
+
+        .item{
+            margin-bottom:12px;
+            color:#444;
+        }
+
+        .update-form select{
+            padding:12px 14px;
+            border-radius:12px;
+            border:1px solid #eee;
+            font-family:'Poppins',sans-serif;
+        }
+
+        .update-form button{
+            border:none;
+            background:#b03052;
+            color:white;
+            padding:12px 18px;
+            border-radius:12px;
+            font-weight:600;
+            cursor:pointer;
+            margin-left:10px;
+        }
+
+        .empty{
+            background:white;
+            border-radius:28px;
+            padding:50px;
+            text-align:center;
+            color:#777;
+            box-shadow:0 12px 30px rgba(0,0,0,.06);
+        }
+
+        @media(max-width:1000px){
+            .filter form{
+                grid-template-columns:1fr;
+            }
+        }
+
+        @media(max-width:900px){
+            .grid{grid-template-columns:1fr;}
+
+            .top{
+                flex-direction:column;
+                align-items:flex-start;
+            }
+
+            .update-form button{
+                margin-left:0;
+                margin-top:10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Захиалгууд</h1>
+
+    <div class="filter">
+
+        <form action="/admin/orders" method="GET">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Нэр эсвэл утсаар хайх..."
+                value="{{ request('search') }}"
+            >
+
+            <select name="status">
+                <option value="">Бүх төлөв</option>
+                <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }}>Pending</option>
+                <option value="Preparing" {{ request('status') == 'Preparing' ? 'selected' : '' }}>Preparing</option>
+                <option value="Ready" {{ request('status') == 'Ready' ? 'selected' : '' }}>Ready</option>
+            </select>
+
+            <input
+                type="date"
+                name="pickup_date"
+                value="{{ request('pickup_date') }}"
+            >
+
+            <button type="submit">
+                Filter
+            </button>
+
+            <a href="/admin/orders">
+                Reset
+            </a>
+
+        </form>
+
+    </div>
+
+    @forelse($orders as $order)
+
+        @php
+            $today = date('Y-m-d');
+            $tomorrow = date('Y-m-d', strtotime('+1 day'));
+
+            if ($order->pickup_date == $today) {
+                $timeBadge = 'Today';
+                $timeColor = '#b91c1c';
+                $timeBg = '#fee2e2';
+            } elseif ($order->pickup_date == $tomorrow) {
+                $timeBadge = 'Tomorrow';
+                $timeColor = '#92400e';
+                $timeBg = '#fef3c7';
+            } elseif ($order->pickup_date < $today) {
+                $timeBadge = 'Overdue';
+                $timeColor = '#991b1b';
+                $timeBg = '#fecaca';
+            } else {
+                $timeBadge = 'Upcoming';
+                $timeColor = '#166534';
+                $timeBg = '#dcfce7';
+            }
+        @endphp
+
+        <div class="order">
+
+            <div class="top">
+
+                <h2>Захиалга #{{ $order->id }}</h2>
+
+                <div class="badges">
+                    <div class="status">
+                        {{ $order->status }}
+                    </div>
+
+                    <div class="status" style="background:{{ $timeBg }};color:{{ $timeColor }};">
+                        {{ $timeBadge }}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="grid">
+
+                <div>
+                    <div class="line">Нэр: {{ $order->customer_name }}</div>
+                    <div class="line">Утас: {{ $order->phone }}</div>
+                    <div class="line">Хаяг: {{ $order->address }}</div>
+                </div>
+
+                <div>
+                    <div class="line">Авах өдөр: {{ $order->pickup_date }}</div>
+                    <div class="line">Авах цаг: {{ $order->pickup_time }}</div>
+                    <div class="line">Тэмдэглэл: {{ $order->note }}</div>
+                </div>
+
+            </div>
+
+            <div class="items">
+
+                <h3 style="margin-bottom:15px;">
+                    Захиалсан бүтээгдэхүүнүүд
+                </h3>
+
+                @foreach($order->items as $item)
+
+                    <div class="item">
+                        {{ $item->product->name ?? 'Deleted Product' }}
+                        ×
+                        {{ $item->quantity }}
+                    </div>
+
+                @endforeach
+
+            </div>
+
+            <div class="price">
+                {{ number_format($order->total_price) }}₮
+            </div>
+
+            <form class="update-form"
+                  action="/admin/orders/{{ $order->id }}/status"
+                  method="POST"
+                  style="margin-top:25px;">
+
+                @csrf
+
+                <select name="status">
+                    <option value="Pending" {{ $order->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                    <option value="Preparing" {{ $order->status == 'Preparing' ? 'selected' : '' }}>Preparing</option>
+                    <option value="Ready" {{ $order->status == 'Ready' ? 'selected' : '' }}>Ready</option>
+                    <option value="Delivered" {{ $order->status == 'Delivered' ? 'selected' : '' }}>Delivered</option>
+                    <option value="Cancelled" {{ $order->status == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
+                </select>
+
+                <button type="submit">
+                    Update Status
+                </button>
+
+            </form>
+
+        </div>
+
+    @empty
+
+        <div class="empty">
+            <h2>Захиалга олдсонгүй</h2>
+            <p>Хайлтын нөхцөлөө өөрчлөөд дахин үзээрэй.</p>
+        </div>
+
+    @endforelse
+
+</div>
+
+<script>
+    console.log('Notification system started');
+
+    let lastOrderCount = {{ count($orders) }};
+
+    async function checkNewOrders(){
+        try{
+            const response = await fetch('/admin/orders-count');
+            const data = await response.json();
+
+            if(data.count > lastOrderCount){
+                alert('Шинэ захиалга орж ирлээ!');
+                location.reload();
+            }
+
+            lastOrderCount = data.count;
+        }catch(error){
+            console.log('ERROR:', error);
+        }
+    }
+
+    setInterval(checkNewOrders, 5000);
+</script>
+
+</body>
+</html>
