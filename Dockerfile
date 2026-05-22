@@ -10,6 +10,8 @@ RUN cp .env.example .env
 
 RUN php artisan key:generate
 
-RUN php artisan storage:link
+RUN php artisan storage:link || true
+
+ENV WEBROOT=/var/www/html/public
 
 CMD ["/start.sh"]
