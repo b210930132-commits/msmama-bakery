@@ -1,8 +1,8 @@
 FROM richarvey/nginx-php-fpm:3.1.6
 
-WORKDIR /var/www/html
+COPY . /var/www/html
 
-COPY . .
+WORKDIR /var/www/html
 
 RUN composer install --no-dev --optimize-autoloader
 
@@ -10,6 +10,6 @@ RUN cp .env.example .env
 
 RUN php artisan key:generate
 
-RUN php artisan storage:link || true
+RUN php artisan storage:link
 
 CMD ["/start.sh"]
