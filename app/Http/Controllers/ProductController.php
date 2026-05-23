@@ -10,27 +10,21 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function home()
-    {
-        $featured = Product::where('featured', 1)
-            ->latest()
-            ->take(8)
-            ->get();
+{
+    $products = Product::latest()
+        ->take(12)
+        ->get();
 
-        $products = Product::latest()
-            ->take(12)
-            ->get();
+    $giftPackages = GiftPackage::where('is_active', true)
+        ->latest()
+        ->take(4)
+        ->get();
 
-        $giftPackages = GiftPackage::where('is_active', true)
-            ->latest()
-            ->take(4)
-            ->get();
-
-        return view('home', compact(
-            'featured',
-            'products',
-            'giftPackages'
-        ));
-    }
+    return view('home', compact(
+        'products',
+        'giftPackages'
+    ));
+}
 
     public function menu(Request $request)
     {
