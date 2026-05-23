@@ -175,12 +175,13 @@
     </div>
 
     <div class="nav-links">
-        <a href="/">Нүүр</a>
-        <a href="/menu">Цэс</a>
-        <a href="/custom-cakes">Захиалгын торт</a>
-        <a href="/cart">Сагс</a>
-        <a href="/orders">Захиалга</a>
-    </div>
+    <a href="/">Нүүр</a>
+    <a href="/menu">Цэс</a>
+    <a href="/custom-cakes">Захиалгын торт</a>
+    <a href="/cart">Сагс</a>
+    <a href="/orders">Захиалга</a>
+    <a href="/admin/login">Admin</a>
+</div>
 
 </nav>
 
