@@ -198,9 +198,9 @@ return [
     | Supported: "lax", "strict", "none", null
     |
     */
+'same_site' => env('SESSION_SAME_SITE', 'lax'),
 
-    'same_site' => env('SESSION_SAME_SITE', 'lax'),
-
+'secure' => env('SESSION_SECURE_COOKIE', false),
     /*
     |--------------------------------------------------------------------------
     | Partitioned Cookies
