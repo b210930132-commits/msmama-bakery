@@ -203,16 +203,22 @@ Route::middleware('auth')->group(function () {
 */
 
 Route::get('/create-admin', function () {
-    \App\Models\User::updateOrCreate(
-        ['email' => 'b210930132@erdenetis.edu.mn'],
-        [
-            'name' => 'Admin',
-            'password' => bcrypt('Anand0409'),
-            'role' => 'admin',
-        ]
-    );
 
-    return 'Admin user created successfully';
+    $user = \App\Models\User::where('email', 'admin@gmail.com')->first();
+
+    if (!$user) {
+
+        $user = new \App\Models\User();
+        $user->name = 'Admin';
+        $user->email = 'admin@gmail.com';
+    }
+
+    $user->password = bcrypt('admin12345');
+    $user->role = 'admin';
+
+    $user->save();
+
+    return 'ADMIN CREATED';
 });
 
 require __DIR__.'/auth.php';
