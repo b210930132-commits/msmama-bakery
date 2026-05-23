@@ -17,6 +17,6 @@ RUN php artisan migrate --force
 
 RUN php artisan storage:link || true
 
-ENV WEBROOT=/var/www/html/public
+EXPOSE 10000
 
-CMD ["/start.sh"]
+CMD php artisan serve --host=0.0.0.0 --port=${PORT:-10000}
