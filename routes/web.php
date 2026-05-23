@@ -15,6 +15,13 @@ use Illuminate\Support\Facades\Auth;
 | Admin Login
 |--------------------------------------------------------------------------
 */
+Route::get('/test', function () {
+    return 'TEST OK';
+});
+
+Route::get('/db-test', function () {
+    return \App\Models\Product::count();
+});
 
 Route::get('/admin/login', function () {
     return view('auth.login');
