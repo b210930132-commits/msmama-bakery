@@ -85,6 +85,26 @@ Route::get('/cart/clear', [CartController::class, 'clear']);
 
 Route::get('/cart/update/{id}/{type}', [CartController::class, 'updateQuantity']);
 
+Route::post('/buy-now/{id}', function ($id, Illuminate\Http\Request $request) {
+
+    $product = \App\Models\Product::findOrFail($id);
+
+    $cart = session()->get('cart', []);
+
+    $cart[$id] = [
+        'id' => $product->id,
+        'name' => $product->name,
+        'price' => $product->price,
+        'image' => $product->image,
+        'quantity' => $request->quantity ?? 1,
+    ];
+
+    session()->put('cart', $cart);
+
+    return redirect('/checkout');
+
+});
+
 /*
 |--------------------------------------------------------------------------
 | Payment

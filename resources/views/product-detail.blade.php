@@ -279,15 +279,15 @@
                         </button>
                     </form>
 
-                    <form action="/cart/add/{{ $product->id }}" method="POST">
-                        @csrf
+                    <form action="/buy-now/{{ $product->id }}" method="POST">
+    @csrf
 
-                        <input type="hidden" name="quantity" id="buyQuantity" value="1">
+    <input type="hidden" name="quantity" id="buyQuantity" value="1">
 
-                        <button class="btn buy" type="submit">
-                            Шууд захиалах
-                        </button>
-                    </form>
+    <button class="btn buy" type="submit">
+        Шууд захиалах
+    </button>
+</form>
 
                 </div>
 
