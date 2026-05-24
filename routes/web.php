@@ -224,21 +224,28 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/create-admin', function () {
 
-    $user = \App\Models\User::where('email', 'admin@gmail.com')->first();
+    try {
 
-    if (!$user) {
+        $user = \App\Models\User::where('email', 'admin@gmail.com')->first();
 
-        $user = new \App\Models\User();
-        $user->name = 'Admin';
-        $user->email = 'admin@gmail.com';
+        if (!$user) {
+            $user = new \App\Models\User();
+            $user->name = 'Admin';
+            $user->email = 'admin@gmail.com';
+        }
+
+        $user->password = \Illuminate\Support\Facades\Hash::make('admin12345');
+        $user->role = 'admin';
+        $user->save();
+
+        return 'ADMIN CREATED: admin@gmail.com / admin12345';
+
+    } catch (\Throwable $e) {
+
+        return 'ERROR: ' . $e->getMessage();
+
     }
 
-    $user->password = bcrypt('admin12345');
-    $user->role = 'admin';
-
-    $user->save();
-
-    return 'ADMIN CREATED';
 });
 
 require __DIR__.'/auth.php';
