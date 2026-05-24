@@ -95,7 +95,7 @@
         <tr>
             <td>
                 @if($gift->image)
-                    <img src="{{ asset('storage/'.$gift->image) }}">
+                    <img src="{{ $giftPackage->image }}">
                 @else
                     No image
                 @endif

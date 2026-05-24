@@ -91,7 +91,7 @@
         <tr>
             <td>
                 @if($cake->image)
-                    <img src="{{ asset('storage/'.$cake->image) }}">
+                    <img src="{{ $customCake->image }}">
                 @else
                     No image
                 @endif

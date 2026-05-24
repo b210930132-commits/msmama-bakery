@@ -283,7 +283,7 @@
 
                 <td>
                     @if($product->image)
-                        <img src="{{ asset('storage/'.$product->image) }}">
+                        <img src="{{ $product->image }}">
                     @else
                         <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1200">
                     @endif

@@ -521,7 +521,7 @@
             <div class="promo-card">
 
                 @if($gift->image)
-                    <img src="{{ asset('storage/'.$gift->image) }}">
+                    <img src="{{ $product->image }}">
                 @else
                     <img src="https://images.unsplash.com/photo-1519869325930-281384150729?q=80&w=1200">
                 @endif
