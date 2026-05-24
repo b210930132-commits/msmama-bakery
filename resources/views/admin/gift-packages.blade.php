@@ -67,11 +67,102 @@
             border-radius:10px;
             text-decoration:none;
             font-weight:bold;
+
+        @media(max-width:850px){
+
+    body{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+        position:fixed;
+        top:0;
+        left:-100%;
+        height:100vh;
+        z-index:999;
+        transition:.3s;
+        padding-top:90px;
+    }
+
+    .sidebar.active{
+        left:0;
+    }
+
+    .mobile-top{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:70px;
+        background:white;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:0 20px;
+        z-index:1000;
+        box-shadow:0 4px 20px rgba(0,0,0,.08);
+    }
+
+    .menu-btn{
+        font-size:30px;
+        color:#b03052;
+        cursor:pointer;
+        font-weight:700;
+    }
+
+    .content{
+        margin-left:0;
+        padding:95px 18px 20px;
+    }
+
+    .top{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+    }
+
+    .title h1{
+        font-size:28px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .grid-two{
+        grid-template-columns:1fr;
+    }
+
+    .recent{
+        padding:20px;
+        overflow-x:auto;
+    }
+
+    table{
+        min-width:650px;
+    }
+}
         }
     </style>
 </head>
 <body>
 
+<div class="mobile-top">
+
+    <div style="
+        font-size:24px;
+        font-weight:700;
+        color:#b03052;
+    ">
+        Ms.Mama
+    </div>
+
+    <div class="menu-btn" onclick="toggleMenu()">
+        ☰
+    </div>
+
+</div>
 <div class="top">
     <h1>Gift багцууд</h1>
 
@@ -123,5 +214,15 @@
     @endforeach
 </table>
 
+<script>
+
+function toggleMenu(){
+
+    document.querySelector('.sidebar')
+        .classList.toggle('active');
+
+}
+
+</script>
 </body>
 </html>
