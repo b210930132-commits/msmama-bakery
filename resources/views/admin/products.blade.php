@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
+    <title>Products | Ms.Mama Admin</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -13,10 +13,49 @@
         body{
             font-family:'Poppins',sans-serif;
             background:#fff6f8;
+            display:flex;
+        }
+
+        .sidebar{
+            width:280px;
+            min-height:100vh;
+            background:#b03052;
+            color:white;
+            padding:40px 30px;
+            position:fixed;
+            left:0;
+            top:0;
+        }
+
+        .logo{
+            font-size:34px;
+            font-weight:700;
+            margin-bottom:50px;
+        }
+
+        .menu{
+            display:flex;
+            flex-direction:column;
+            gap:16px;
+        }
+
+        .menu a{
+            text-decoration:none;
+            color:white;
+            padding:16px 18px;
+            border-radius:16px;
+            transition:.3s;
+            font-weight:500;
+        }
+
+        .menu a:hover{
+            background:rgba(255,255,255,.12);
         }
 
         .container{
             padding:40px 8%;
+            margin-left:280px;
+            width:100%;
         }
 
         .top{
@@ -24,6 +63,7 @@
             justify-content:space-between;
             align-items:center;
             margin-bottom:30px;
+            gap:20px;
         }
 
         .top h1{
@@ -38,6 +78,7 @@
             padding:16px 28px;
             border-radius:14px;
             font-weight:600;
+            white-space:nowrap;
         }
 
         .filter{
@@ -84,6 +125,10 @@
             background:#111827;
         }
 
+        .table-wrap{
+            width:100%;
+        }
+
         table{
             width:100%;
             background:white;
@@ -125,6 +170,7 @@
             border-radius:12px;
             font-size:13px;
             font-weight:600;
+            display:inline-block;
         }
 
         .stock-badge{
@@ -135,20 +181,9 @@
             display:inline-block;
         }
 
-        .stock-good{
-            background:#dcfce7;
-            color:#166534;
-        }
-
-        .stock-low{
-            background:#fef3c7;
-            color:#92400e;
-        }
-
-        .stock-out{
-            background:#fee2e2;
-            color:#991b1b;
-        }
+        .stock-good{background:#dcfce7;color:#166534;}
+        .stock-low{background:#fef3c7;color:#92400e;}
+        .stock-out{background:#fee2e2;color:#991b1b;}
 
         .sold-badge{
             background:#ede9fe;
@@ -163,27 +198,22 @@
         .actions{
             display:flex;
             gap:10px;
+            flex-wrap:wrap;
         }
 
-        .edit-btn{
-            background:#b03052;
-            color:white;
-            text-decoration:none;
-            padding:10px 16px;
-            border-radius:12px;
-            font-size:14px;
-            font-weight:600;
-        }
-
+        .edit-btn,
         .delete-btn{
-            background:#111827;
             color:white;
             text-decoration:none;
             padding:10px 16px;
             border-radius:12px;
             font-size:14px;
             font-weight:600;
+            display:inline-block;
         }
+
+        .edit-btn{background:#b03052;}
+        .delete-btn{background:#111827;}
 
         .empty{
             text-align:center;
@@ -191,98 +221,110 @@
             color:#777;
         }
 
+        .mobile-top{
+            display:none;
+        }
+
+        @media(max-width:1100px){
+            .filter form{
+                grid-template-columns:1fr 1fr;
+            }
+        }
+
         @media(max-width:850px){
 
-    body{
-        flex-direction:column;
-    }
+            body{
+                flex-direction:column;
+            }
 
-    .sidebar{
-        width:100%;
-        position:fixed;
-        top:0;
-        left:-100%;
-        height:100vh;
-        z-index:999;
-        transition:.3s;
-        padding-top:90px;
-    }
+            .mobile-top{
+                position:fixed;
+                top:0;
+                left:0;
+                width:100%;
+                height:70px;
+                background:white;
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                padding:0 20px;
+                z-index:1000;
+                box-shadow:0 4px 20px rgba(0,0,0,.08);
+            }
 
-    .sidebar.active{
-        left:0;
-    }
+            .menu-btn{
+                font-size:30px;
+                color:#b03052;
+                cursor:pointer;
+                font-weight:700;
+            }
 
-    .mobile-top{
-        position:fixed;
-        top:0;
-        left:0;
-        width:100%;
-        height:70px;
-        background:white;
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        padding:0 20px;
-        z-index:1000;
-        box-shadow:0 4px 20px rgba(0,0,0,.08);
-    }
+            .sidebar{
+                width:100%;
+                left:-100%;
+                transition:.3s;
+                z-index:999;
+                padding-top:90px;
+            }
 
-    .menu-btn{
-        font-size:30px;
-        color:#b03052;
-        cursor:pointer;
-        font-weight:700;
-    }
+            .sidebar.active{
+                left:0;
+            }
 
-    .content{
-        margin-left:0;
-        padding:95px 18px 20px;
-    }
+            .container{
+                margin-left:0;
+                padding:95px 18px 20px;
+            }
 
-    .top{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:20px;
-    }
+            .top{
+                flex-direction:column;
+                align-items:flex-start;
+            }
 
-    .title h1{
-        font-size:28px;
-    }
+            .top h1{
+                font-size:28px;
+            }
 
-    .cards{
-        grid-template-columns:1fr;
-    }
+            .filter form{
+                grid-template-columns:1fr;
+            }
 
-    .grid-two{
-        grid-template-columns:1fr;
-    }
+            .table-wrap{
+                overflow-x:auto;
+            }
 
-    .recent{
-        padding:20px;
-        overflow-x:auto;
-    }
-
-    table{
-        min-width:650px;
-    }
-}
+            table{
+                min-width:720px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="mobile-top">
 
-    <div style="
-        font-size:24px;
-        font-weight:700;
-        color:#b03052;
-    ">
+<div class="mobile-top">
+    <div style="font-size:24px;font-weight:700;color:#b03052;">
         Ms.Mama
     </div>
 
     <div class="menu-btn" onclick="toggleMenu()">
         ☰
     </div>
+</div>
 
+<div class="sidebar">
+    <div class="logo">
+        Ms.Mama
+    </div>
+
+    <div class="menu">
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/products">Products</a>
+        <a href="/admin/orders">Orders</a>
+        <a href="/admin/completed-orders">Completed Orders</a>
+        <a href="/admin/products/create">Add Product</a>
+        <a href="/admin/gift-packages">Gift Packages</a>
+        <a href="/admin/custom-cakes">Custom Cakes</a>
+    </div>
 </div>
 
 <div class="container">
@@ -296,7 +338,6 @@
     </div>
 
     <div class="filter">
-
         <form action="/admin/products" method="GET">
 
             <input
@@ -334,112 +375,99 @@
             </a>
 
         </form>
-
     </div>
 
-    <table>
-
-        <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Stock</th>
-            <th>Sold</th>
-            <th>Actions</th>
-        </tr>
-
-        @forelse($products as $product)
-
+    <div class="table-wrap">
+        <table>
             <tr>
-
-                <td>
-                    @if($product->image)
-                        <img src="{{ $product->image }}">
-                    @else
-                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1200">
-                    @endif
-                </td>
-
-                <td>
-                    <strong>{{ $product->name }}</strong>
-                </td>
-
-                <td>
-                    <span class="badge">
-                        {{ $product->category }}
-                    </span>
-                </td>
-
-                <td>
-                    {{ number_format($product->price) }}₮
-                </td>
-
-                <td>
-                    @if($product->stock <= 0)
-                        <span class="stock-badge stock-out">
-                            Out of Stock
-                        </span>
-                    @elseif($product->stock <= 5)
-                        <span class="stock-badge stock-low">
-                            Low Stock ({{ $product->stock }})
-                        </span>
-                    @else
-                        <span class="stock-badge stock-good">
-                            In Stock ({{ $product->stock }})
-                        </span>
-                    @endif
-                </td>
-
-                <td>
-                    <span class="sold-badge">
-                        {{ $product->total_sold ?? 0 }} sold
-                    </span>
-                </td>
-
-                <td>
-                    <div class="actions">
-
-                        <a href="/admin/products/{{ $product->id }}/edit"
-                           class="edit-btn">
-                            Edit
-                        </a>
-
-                        <a href="/admin/products/{{ $product->id }}/delete"
-                           onclick="return confirm('Устгах уу?')"
-                           class="delete-btn">
-                            Delete
-                        </a>
-
-                    </div>
-                </td>
-
+                <th>Image</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Sold</th>
+                <th>Actions</th>
             </tr>
 
-        @empty
+            @forelse($products as $product)
+                <tr>
+                    <td>
+                        @if($product->image)
+                            <img src="{{ $product->image }}">
+                        @else
+                            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1200">
+                        @endif
+                    </td>
 
-            <tr>
-                <td colspan="7">
-                    <div class="empty">
-                        <h2>No products found</h2>
-                    </div>
-                </td>
-            </tr>
+                    <td>
+                        <strong>{{ $product->name }}</strong>
+                    </td>
 
-        @endforelse
+                    <td>
+                        <span class="badge">
+                            {{ $product->category }}
+                        </span>
+                    </td>
 
-    </table>
+                    <td>
+                        {{ number_format($product->price) }}₮
+                    </td>
+
+                    <td>
+                        @if($product->stock <= 0)
+                            <span class="stock-badge stock-out">
+                                Out of Stock
+                            </span>
+                        @elseif($product->stock <= 5)
+                            <span class="stock-badge stock-low">
+                                Low Stock ({{ $product->stock }})
+                            </span>
+                        @else
+                            <span class="stock-badge stock-good">
+                                In Stock ({{ $product->stock }})
+                            </span>
+                        @endif
+                    </td>
+
+                    <td>
+                        <span class="sold-badge">
+                            {{ $product->total_sold ?? 0 }} sold
+                        </span>
+                    </td>
+
+                    <td>
+                        <div class="actions">
+                            <a href="/admin/products/{{ $product->id }}/edit" class="edit-btn">
+                                Edit
+                            </a>
+
+                            <a href="/admin/products/{{ $product->id }}/delete"
+                               onclick="return confirm('Устгах уу?')"
+                               class="delete-btn">
+                                Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="7">
+                        <div class="empty">
+                            <h2>No products found</h2>
+                        </div>
+                    </td>
+                </tr>
+            @endforelse
+        </table>
+    </div>
 
 </div>
+
 <script>
-
 function toggleMenu(){
-
-    document.querySelector('.sidebar')
-        .classList.toggle('active');
-
+    document.querySelector('.sidebar').classList.toggle('active');
 }
-
 </script>
+
 </body>
 </html>
