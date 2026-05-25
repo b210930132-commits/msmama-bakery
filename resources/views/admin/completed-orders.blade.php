@@ -16,10 +16,10 @@
         }
 
         .container{
-            max-width:1300px;
-            margin:auto;
-            padding:50px 8%;
-        }
+    width:100%;
+    margin-left:280px;
+    padding:50px 8%;
+}
 
         h1{
             font-size:46px;
@@ -163,6 +163,40 @@
     body{
         flex-direction:column;
     }
+    .sidebar{
+    width:280px;
+    min-height:100vh;
+    background:#b03052;
+    color:white;
+    padding:40px 30px;
+    position:fixed;
+    left:0;
+    top:0;
+}
+
+.logo{
+    font-size:34px;
+    font-weight:700;
+    margin-bottom:50px;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:white;
+    padding:16px 18px;
+    border-radius:16px;
+    font-weight:500;
+}
+
+.menu a:hover{
+    background:rgba(255,255,255,.12);
+}
 
     .sidebar{
         width:100%;
@@ -249,7 +283,31 @@
     <div class="menu-btn" onclick="toggleMenu()">
         ☰
     </div>
+<div class="sidebar">
 
+    <div class="logo">
+        Ms.Mama
+    </div>
+
+    <div class="menu">
+
+        <a href="/admin/dashboard">Dashboard</a>
+
+        <a href="/admin/products">Products</a>
+
+        <a href="/admin/orders">Orders</a>
+
+        <a href="/admin/completed-orders">Completed Orders</a>
+
+        <a href="/admin/products/create">Add Product</a>
+
+        <a href="/admin/gift-packages">Gift Packages</a>
+
+        <a href="/admin/custom-cakes">Custom Cakes</a>
+
+    </div>
+
+</div>
 </div>
 <div class="container">
 
