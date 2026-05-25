@@ -88,28 +88,42 @@ class AdminController extends Controller
         return view('admin.create-product');
     }
 
-    public function store(Request $request)
-    {
-        $data = $request->validate([
-            'name' => 'required',
-            'description' => 'nullable',
-            'price' => 'required',
-            'category' => 'required',
-            'stock' => 'required',
-            'image' => 'nullable|image',
-        ]);
+    public function update(Request $request, $id)
+{
+    $product = Product::findOrFail($id);
 
-        if ($request->hasFile('image')) {
-            $data['image'] = Cloudinary::upload(
+    $data = $request->validate([
+        'name' => 'required',
+        'description' => 'nullable',
+        'price' => 'required',
+        'category' => 'required',
+        'stock' => 'required',
+        'image' => 'nullable|image',
+    ]);
+
+    if ($request->hasFile('image')) {
+
+        try {
+
+            $upload = Cloudinary::upload(
                 $request->file('image')->getRealPath(),
                 ['folder' => 'msmama-products']
-            )->getSecurePath();
+            );
+
+            $data['image'] = $upload->getSecurePath();
+
+        } catch (\Exception $e) {
+
+            unset($data['image']);
+
         }
 
-        Product::create($data);
-
-        return redirect('/admin/products');
     }
+
+    $product->update($data);
+
+    return redirect('/admin/products');
+}
 
     public function orders(Request $request)
     {
