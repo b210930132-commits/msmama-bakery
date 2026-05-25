@@ -87,44 +87,6 @@ class AdminController extends Controller
     {
         return view('admin.create-product');
     }
-
-    public function update(Request $request, $id)
-{
-    $product = Product::findOrFail($id);
-
-    $data = $request->validate([
-        'name' => 'required',
-        'description' => 'nullable',
-        'price' => 'required',
-        'category' => 'required',
-        'stock' => 'required',
-        'image' => 'nullable|image',
-    ]);
-
-    if ($request->hasFile('image')) {
-
-        try {
-
-            $upload = Cloudinary::upload(
-                $request->file('image')->getRealPath(),
-                ['folder' => 'msmama-products']
-            );
-
-            $data['image'] = $upload->getSecurePath();
-
-        } catch (\Exception $e) {
-
-            unset($data['image']);
-
-        }
-
-    }
-
-    $product->update($data);
-
-    return redirect('/admin/products');
-}
-
     public function orders(Request $request)
     {
         $query = Order::with('items.product')
@@ -187,15 +149,15 @@ class AdminController extends Controller
         return redirect('/admin/orders');
     }
 
-    public function edit($id)
-    {
-        $product = Product::findOrFail($id);
+public function edit($id)
+{
+    $product = Product::findOrFail($id);
 
-        return view('admin.edit-product', compact('product'));
-    }
+    return view('admin.edit-product', compact('product'));
+}
 
-    public function update(Request $request, $id)
-    {
+public function update(Request $request, $id)
+{
         $product = Product::findOrFail($id);
 
         $data = $request->validate([
