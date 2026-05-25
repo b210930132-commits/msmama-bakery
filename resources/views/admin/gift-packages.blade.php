@@ -6,197 +6,214 @@
     <title>Gift Packages | Ms.Mama Admin</title>
 
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;}
+    *{margin:0;padding:0;box-sizing:border-box;}
 
+    body{
+        font-family:'Poppins',Arial,sans-serif;
+        background:#fff6f8;
+        color:#2b2b2b;
+        display:flex;
+    }
+
+    .sidebar{
+        width:280px;
+        min-height:100vh;
+        background:#b03052;
+        color:white;
+        padding:40px 30px;
+        position:fixed;
+        left:0;
+        top:0;
+    }
+
+    .logo{
+        font-size:34px;
+        font-weight:700;
+        margin-bottom:50px;
+    }
+
+    .menu{
+        display:flex;
+        flex-direction:column;
+        gap:16px;
+    }
+
+    .menu a{
+        text-decoration:none;
+        color:white;
+        padding:16px 18px;
+        border-radius:16px;
+        font-weight:500;
+    }
+
+    .menu a:hover{
+        background:rgba(255,255,255,.12);
+    }
+
+    .container{
+        width:100%;
+        margin-left:280px;
+        padding:45px 20px;
+    }
+
+    .top{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:28px;
+        gap:18px;
+    }
+
+    h1{
+        font-size:36px;
+        color:#2b2b2b;
+    }
+
+    .back{
+        text-decoration:none;
+        color:#b03052;
+        background:white;
+        padding:13px 18px;
+        border-radius:14px;
+        font-weight:600;
+        box-shadow:0 8px 20px rgba(0,0,0,.05);
+        white-space:nowrap;
+    }
+
+    .card{
+        background:white;
+        border-radius:28px;
+        padding:32px;
+        box-shadow:0 12px 30px rgba(0,0,0,.06);
+        max-width:760px;
+    }
+
+    .group{margin-bottom:20px;}
+
+    label{
+        display:block;
+        margin-bottom:8px;
+        font-weight:600;
+        color:#333;
+    }
+
+    input, textarea, select{
+        width:100%;
+        padding:15px 16px;
+        border:1px solid #f0d7df;
+        border-radius:14px;
+        font-size:15px;
+        font-family:'Poppins',Arial,sans-serif;
+        outline:none;
+        background:#fffaf7;
+    }
+
+    textarea{
+        min-height:120px;
+        resize:none;
+    }
+
+    input:focus, textarea:focus, select:focus{
+        border-color:#b03052;
+        background:white;
+    }
+
+    .two{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:18px;
+    }
+
+    .check{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        margin:8px 0 20px;
+        font-weight:500;
+    }
+
+    .check input{width:auto;}
+
+    .btn{
+        width:100%;
+        border:none;
+        background:#b03052;
+        color:white;
+        padding:16px;
+        border-radius:14px;
+        font-size:16px;
+        font-weight:700;
+        cursor:pointer;
+    }
+
+    .btn:hover{background:#922844;}
+
+    .mobile-top{display:none;}
+
+    @media(max-width:850px){
         body{
-            font-family:Arial,sans-serif;
-            background:#fff6f8;
-            display:flex;
-        }
-
-        .sidebar{
-            width:280px;
-            min-height:100vh;
-            background:#b03052;
-            color:white;
-            padding:40px 30px;
-            position:fixed;
-            left:0;
-            top:0;
-        }
-
-        .logo{
-            font-size:34px;
-            font-weight:700;
-            margin-bottom:50px;
-        }
-
-        .menu{
-            display:flex;
             flex-direction:column;
-            gap:16px;
-        }
-
-        .menu a{
-            text-decoration:none;
-            color:white;
-            padding:16px 18px;
-            border-radius:16px;
-            font-weight:500;
-        }
-
-        .menu a:hover{
-            background:rgba(255,255,255,.12);
-        }
-
-        .container{
-            margin-left:280px;
-            width:100%;
-            padding:40px 8%;
-        }
-
-        .top{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            margin-bottom:30px;
-            gap:20px;
-        }
-
-        h1{
-            color:#2b2b2b;
-        }
-
-        .btn{
-            background:#b03052;
-            color:white;
-            padding:14px 20px;
-            border-radius:12px;
-            text-decoration:none;
-            font-weight:bold;
-            white-space:nowrap;
-        }
-
-        .table-wrap{
-            width:100%;
-        }
-
-        table{
-            width:100%;
-            background:white;
-            border-collapse:collapse;
-            border-radius:20px;
-            overflow:hidden;
-            box-shadow:0 10px 25px rgba(0,0,0,.06);
-        }
-
-        th{
-            background:#b03052;
-            color:white;
-            padding:16px;
-            text-align:left;
-            white-space:nowrap;
-        }
-
-        td{
-            padding:16px;
-            border-bottom:1px solid #eee;
-            vertical-align:middle;
-        }
-
-        img{
-            width:80px;
-            height:80px;
-            object-fit:cover;
-            border-radius:14px;
-        }
-
-        .delete{
-            background:#111827;
-            color:white;
-            padding:10px 14px;
-            border-radius:10px;
-            text-decoration:none;
-            font-weight:bold;
-            display:inline-block;
-        }
-
-        .status{
-            background:#fff0f5;
-            color:#b03052;
-            padding:8px 12px;
-            border-radius:10px;
-            font-weight:bold;
-            display:inline-block;
         }
 
         .mobile-top{
-            display:none;
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:70px;
+            background:white;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:0 20px;
+            z-index:1000;
+            box-shadow:0 4px 20px rgba(0,0,0,.08);
         }
 
-        @media(max-width:850px){
-
-            body{
-                flex-direction:column;
-            }
-
-            .mobile-top{
-                position:fixed;
-                top:0;
-                left:0;
-                width:100%;
-                height:70px;
-                background:white;
-                display:flex;
-                align-items:center;
-                justify-content:space-between;
-                padding:0 20px;
-                z-index:1000;
-                box-shadow:0 4px 20px rgba(0,0,0,.08);
-            }
-
-            .menu-btn{
-                font-size:30px;
-                color:#b03052;
-                cursor:pointer;
-                font-weight:700;
-            }
-
-            .sidebar{
-                width:100%;
-                left:-100%;
-                transition:.3s;
-                z-index:999;
-                padding-top:90px;
-            }
-
-            .sidebar.active{
-                left:0;
-            }
-
-            .container{
-                margin-left:0;
-                padding:95px 18px 20px;
-            }
-
-            .top{
-                flex-direction:column;
-                align-items:flex-start;
-            }
-
-            h1{
-                font-size:28px;
-            }
-
-            .table-wrap{
-                overflow-x:auto;
-            }
-
-            table{
-                min-width:700px;
-            }
+        .menu-btn{
+            font-size:30px;
+            color:#b03052;
+            cursor:pointer;
+            font-weight:700;
         }
-    </style>
+
+        .sidebar{
+            width:100%;
+            left:-100%;
+            height:100vh;
+            z-index:999;
+            transition:.3s;
+            padding-top:90px;
+        }
+
+        .sidebar.active{
+            left:0;
+        }
+
+        .container{
+            margin-left:0;
+            padding:95px 18px 20px;
+        }
+
+        .top{
+            flex-direction:column;
+            align-items:flex-start;
+        }
+
+        h1{
+            font-size:28px;
+        }
+
+        .card{
+            max-width:100%;
+            padding:22px;
+        }
+
+        .two{
+            grid-template-columns:1fr;
+        }
+    }
+</style>
 </head>
 <body>
 

@@ -8,224 +8,214 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;}
-
-        body{
-            font-family:'Poppins',Arial,sans-serif;
-            background:#fff6f8;
-            color:#2b2b2b;
-        }
-
-       .container{
-    width:100%;
-    margin-left:280px;
-    padding:45px 20px;
-}
-        .top{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            margin-bottom:28px;
-        }
-
-        h1{
-            font-size:36px;
-            color:#2b2b2b;
-        }
-
-        .back{
-            text-decoration:none;
-            color:#b03052;
-            background:white;
-            padding:13px 18px;
-            border-radius:14px;
-            font-weight:600;
-            box-shadow:0 8px 20px rgba(0,0,0,.05);
-        }
-
-        .card{
-            background:white;
-            border-radius:28px;
-            padding:32px;
-            box-shadow:0 12px 30px rgba(0,0,0,.06);
-        }
-
-        .group{
-            margin-bottom:20px;
-        }
-
-        label{
-            display:block;
-            margin-bottom:8px;
-            font-weight:600;
-            color:#333;
-        }
-
-        input, textarea, select{
-            width:100%;
-            padding:15px 16px;
-            border:1px solid #f0d7df;
-            border-radius:14px;
-            font-size:15px;
-            font-family:'Poppins',Arial,sans-serif;
-            outline:none;
-            background:#fffaf7;
-        }
-
-        textarea{
-            min-height:120px;
-            resize:none;
-        }
-
-        input:focus, textarea:focus, select:focus{
-            border-color:#b03052;
-            background:white;
-        }
-
-        .two{
-            display:grid;
-            grid-template-columns:1fr 1fr;
-            gap:18px;
-        }
-
-        .check{
-            display:flex;
-            align-items:center;
-            gap:10px;
-            margin:8px 0 20px;
-            font-weight:500;
-        }
-
-        .check input{
-            width:auto;
-        }
-
-        .btn{
-            width:100%;
-            border:none;
-            background:#b03052;
-            color:white;
-            padding:16px;
-            border-radius:14px;
-            font-size:16px;
-            font-weight:700;
-            cursor:pointer;
-        }
-
-        .btn:hover{
-            background:#922844;
-        }
-
-        @media(max-width:850px){
+    *{margin:0;padding:0;box-sizing:border-box;}
 
     body{
-        flex-direction:column;
-    }
-
-    .sidebar{
-    width:280px;
-    min-height:100vh;
-    background:#b03052;
-    color:white;
-    padding:40px 30px;
-    position:fixed;
-    left:0;
-    top:0;
-}
-
-.logo{
-    font-size:34px;
-    font-weight:700;
-    margin-bottom:50px;
-}
-
-.menu{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-}
-
-.menu a{
-    text-decoration:none;
-    color:white;
-    padding:16px 18px;
-    border-radius:16px;
-    font-weight:500;
-}
-
-.menu a:hover{
-    background:rgba(255,255,255,.12);
-}
-    .sidebar{
-        width:100%;
-        position:fixed;
-        top:0;
-        left:-100%;
-        height:100vh;
-        z-index:999;
-        transition:.3s;
-        padding-top:90px;
-    }
-
-    .sidebar.active{
-        left:0;
-    }
-
-    .mobile-top{
-        position:fixed;
-        top:0;
-        left:0;
-        width:100%;
-        height:70px;
-        background:white;
+        font-family:'Poppins',Arial,sans-serif;
+        background:#fff6f8;
+        color:#2b2b2b;
         display:flex;
-        align-items:center;
-        justify-content:space-between;
-        padding:0 20px;
-        z-index:1000;
-        box-shadow:0 4px 20px rgba(0,0,0,.08);
     }
 
-    .menu-btn{
-        font-size:30px;
-        color:#b03052;
-        cursor:pointer;
+    .sidebar{
+        width:280px;
+        min-height:100vh;
+        background:#b03052;
+        color:white;
+        padding:40px 30px;
+        position:fixed;
+        left:0;
+        top:0;
+    }
+
+    .logo{
+        font-size:34px;
         font-weight:700;
+        margin-bottom:50px;
     }
 
-    .content{
-        margin-left:0;
-        padding:95px 18px 20px;
+    .menu{
+        display:flex;
+        flex-direction:column;
+        gap:16px;
+    }
+
+    .menu a{
+        text-decoration:none;
+        color:white;
+        padding:16px 18px;
+        border-radius:16px;
+        font-weight:500;
+    }
+
+    .menu a:hover{
+        background:rgba(255,255,255,.12);
+    }
+
+    .container{
+        width:100%;
+        margin-left:280px;
+        padding:45px 20px;
     }
 
     .top{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:20px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:28px;
+        gap:18px;
     }
 
-    .title h1{
-        font-size:28px;
+    h1{
+        font-size:36px;
+        color:#2b2b2b;
     }
 
-    .cards{
-        grid-template-columns:1fr;
+    .back{
+        text-decoration:none;
+        color:#b03052;
+        background:white;
+        padding:13px 18px;
+        border-radius:14px;
+        font-weight:600;
+        box-shadow:0 8px 20px rgba(0,0,0,.05);
+        white-space:nowrap;
     }
 
-    .grid-two{
-        grid-template-columns:1fr;
+    .card{
+        background:white;
+        border-radius:28px;
+        padding:32px;
+        box-shadow:0 12px 30px rgba(0,0,0,.06);
+        max-width:760px;
     }
 
-    .recent{
-        padding:20px;
-        overflow-x:auto;
+    .group{margin-bottom:20px;}
+
+    label{
+        display:block;
+        margin-bottom:8px;
+        font-weight:600;
+        color:#333;
     }
 
-    table{
-        min-width:650px;
+    input, textarea, select{
+        width:100%;
+        padding:15px 16px;
+        border:1px solid #f0d7df;
+        border-radius:14px;
+        font-size:15px;
+        font-family:'Poppins',Arial,sans-serif;
+        outline:none;
+        background:#fffaf7;
     }
-}
-    </style>
+
+    textarea{
+        min-height:120px;
+        resize:none;
+    }
+
+    input:focus, textarea:focus, select:focus{
+        border-color:#b03052;
+        background:white;
+    }
+
+    .two{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:18px;
+    }
+
+    .check{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        margin:8px 0 20px;
+        font-weight:500;
+    }
+
+    .check input{width:auto;}
+
+    .btn{
+        width:100%;
+        border:none;
+        background:#b03052;
+        color:white;
+        padding:16px;
+        border-radius:14px;
+        font-size:16px;
+        font-weight:700;
+        cursor:pointer;
+    }
+
+    .btn:hover{background:#922844;}
+
+    .mobile-top{display:none;}
+
+    @media(max-width:850px){
+        body{
+            flex-direction:column;
+        }
+
+        .mobile-top{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:70px;
+            background:white;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:0 20px;
+            z-index:1000;
+            box-shadow:0 4px 20px rgba(0,0,0,.08);
+        }
+
+        .menu-btn{
+            font-size:30px;
+            color:#b03052;
+            cursor:pointer;
+            font-weight:700;
+        }
+
+        .sidebar{
+            width:100%;
+            left:-100%;
+            height:100vh;
+            z-index:999;
+            transition:.3s;
+            padding-top:90px;
+        }
+
+        .sidebar.active{
+            left:0;
+        }
+
+        .container{
+            margin-left:0;
+            padding:95px 18px 20px;
+        }
+
+        .top{
+            flex-direction:column;
+            align-items:flex-start;
+        }
+
+        h1{
+            font-size:28px;
+        }
+
+        .card{
+            max-width:100%;
+            padding:22px;
+        }
+
+        .two{
+            grid-template-columns:1fr;
+        }
+    }
+</style>
 </head>
 <body>
 
