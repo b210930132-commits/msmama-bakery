@@ -18,7 +18,6 @@ class AdminController extends Controller
         $orderCount = Order::count();
         $totalSales = Order::sum('total_price');
         $pendingOrders = Order::where('status', 'Pending')->count();
-
         $todaySales = Order::whereDate('created_at', today())->sum('total_price');
 
         $monthlySales = Order::whereMonth('created_at', now()->month)
@@ -87,6 +86,56 @@ class AdminController extends Controller
     {
         return view('admin.create-product');
     }
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+            'description' => 'nullable',
+            'price' => 'required',
+            'category' => 'required',
+            'stock' => 'required',
+            'image' => 'nullable|string',
+        ]);
+
+        Product::create($data);
+
+        return redirect('/admin/products');
+    }
+
+    public function edit($id)
+    {
+        $product = Product::findOrFail($id);
+
+        return view('admin.edit-product', compact('product'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        $data = $request->validate([
+            'name' => 'required',
+            'description' => 'nullable',
+            'price' => 'required',
+            'category' => 'required',
+            'stock' => 'required',
+            'image' => 'nullable|string',
+        ]);
+
+        $product->update($data);
+
+        return redirect('/admin/products');
+    }
+
+    public function delete($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect('/admin/products');
+    }
+
     public function orders(Request $request)
     {
         $query = Order::with('items.product')
@@ -149,46 +198,6 @@ class AdminController extends Controller
         return redirect('/admin/orders');
     }
 
-public function edit($id)
-{
-    $product = Product::findOrFail($id);
-
-    return view('admin.edit-product', compact('product'));
-}
-
-public function update(Request $request, $id)
-{
-        $product = Product::findOrFail($id);
-
-        $data = $request->validate([
-            'name' => 'required',
-            'description' => 'nullable',
-            'price' => 'required',
-            'category' => 'required',
-            'stock' => 'required',
-            'image' => 'nullable|image',
-        ]);
-
-        if ($request->hasFile('image')) {
-            $data['image'] = Cloudinary::upload(
-                $request->file('image')->getRealPath(),
-                ['folder' => 'msmama-products']
-            )->getSecurePath();
-        }
-
-        $product->update($data);
-
-        return redirect('/admin/products');
-    }
-
-    public function delete($id)
-    {
-        $product = Product::findOrFail($id);
-        $product->delete();
-
-        return redirect('/admin/products');
-    }
-
     public function giftPackages()
     {
         $giftPackages = GiftPackage::latest()->get();
@@ -208,16 +217,9 @@ public function update(Request $request, $id)
             'label' => 'nullable',
             'description' => 'nullable',
             'price' => 'required',
-            'image' => 'nullable|image',
+            'image' => 'nullable|string',
             'is_active' => 'nullable',
         ]);
-
-        if ($request->hasFile('image')) {
-            $data['image'] = Cloudinary::upload(
-                $request->file('image')->getRealPath(),
-                ['folder' => 'msmama-gift-packages']
-            )->getSecurePath();
-        }
 
         $data['is_active'] = $request->has('is_active');
 
@@ -253,16 +255,9 @@ public function update(Request $request, $id)
             'label' => 'nullable',
             'description' => 'nullable',
             'price' => 'required',
-            'image' => 'nullable|image',
+            'image' => 'nullable|string',
             'is_active' => 'nullable',
         ]);
-
-        if ($request->hasFile('image')) {
-            $data['image'] = Cloudinary::upload(
-                $request->file('image')->getRealPath(),
-                ['folder' => 'msmama-custom-cakes']
-            )->getSecurePath();
-        }
 
         $data['is_active'] = $request->has('is_active');
 
