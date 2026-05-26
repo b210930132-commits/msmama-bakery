@@ -268,7 +268,7 @@
 
     <div class="card">
 
-        <form action="/admin/products" method="POST" enctype="multipart/form-data">
+        <form action="/admin/products/store" method="POST">
     @csrf
 
             <div class="group">
