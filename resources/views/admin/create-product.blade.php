@@ -268,8 +268,8 @@
 
     <div class="card">
 
-        <form action="/admin/products/store" method="POST" enctype="multipart/form-data">
-            @csrf
+        <form action="/admin/products" method="POST" enctype="multipart/form-data">
+    @csrf
 
             <div class="group">
                 <label>Бүтээгдэхүүний нэр</label>
@@ -310,7 +310,9 @@
 
             <div class="group">
                 <label>Зураг</label>
-                <input type="file" name="image">
+                <input type="text"
+       name="image"
+       placeholder="/image/americano.jpg">
             </div>
 
             <label class="check">
