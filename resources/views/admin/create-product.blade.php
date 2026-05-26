@@ -230,8 +230,11 @@
     </div>
 
     <div class="menu-btn" onclick="toggleMenu()">
-        ☰
-    </div>
+    ☰
+</div>
+
+</div>
+
 <div class="sidebar">
 
     <div class="logo">

@@ -119,7 +119,6 @@ class AdminController extends Controller
             'description' => 'nullable',
             'price' => 'required',
             'category' => 'required',
-            'stock' => 'required',
             'image' => 'nullable|string',
         ]);
 
