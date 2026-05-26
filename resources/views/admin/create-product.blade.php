@@ -275,12 +275,9 @@
     @csrf   
 
             <div class="group">
-    <label>Зураг</label>
-
-    <input type="file"
-           name="image"
-           accept="image/*">
-</div>
+                <label>Бүтээгдэхүүний нэр</label>
+<input type="text" name="name" placeholder="Жишээ: Chocolate Cake" required>
+    
 
             <div class="group">
                 <label>Тайлбар</label>
@@ -314,7 +311,13 @@
                 </select>
             </div>
 
-            
+            <div class="group">
+    <label>Зураг</label>
+
+    <input type="file"
+           name="image"
+           accept="image/*">
+</div>
 
             <label class="check">
                 <input type="checkbox" name="featured" value="1">
