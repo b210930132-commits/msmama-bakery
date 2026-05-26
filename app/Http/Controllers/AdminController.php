@@ -87,21 +87,29 @@ class AdminController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $data = $request->validate([
-            'name' => 'required',
-            'description' => 'nullable',
-            'price' => 'required',
-            'category' => 'required',
-            'stock' => 'required',
-        
-        ]);
+{
+    $data = $request->validate([
+        'name' => 'required',
+        'description' => 'nullable',
+        'price' => 'required',
+        'category' => 'required',
+        'stock' => 'required',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+    ]);
 
-        Product::create($data);
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $fileName = time() . '_' . $file->getClientOriginalName();
 
-        return redirect('/admin/products');
+        $file->move(public_path('image'), $fileName);
+
+        $data['image'] = '/image/' . $fileName;
     }
 
+    Product::create($data);
+
+    return redirect('/admin/products');
+}
     public function edit($id)
     {
         $product = Product::findOrFail($id);
@@ -109,22 +117,34 @@ class AdminController extends Controller
         return view('admin.edit-product', compact('product'));
     }
 
-    public function update(Request $request, $id)
-    {
-        $product = Product::findOrFail($id);
+    ppublic function update(Request $request, $id)
+{
+    $product = Product::findOrFail($id);
 
-        $data = $request->validate([
-            'name' => 'required',
-            'description' => 'nullable',
-            'price' => 'required',
-            'category' => 'required',
-        
-        ]);
+    $data = $request->validate([
+        'name' => 'required',
+        'description' => 'nullable',
+        'price' => 'required',
+        'category' => 'required',
+        'stock' => 'required',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+    ]);
 
-        $product->update($data);
+    if ($request->hasFile('image')) {
 
-        return redirect('/admin/products');
+        $file = $request->file('image');
+
+        $fileName = time() . '_' . $file->getClientOriginalName();
+
+        $file->move(public_path('image'), $fileName);
+
+        $data['image'] = '/image/' . $fileName;
     }
+
+    $product->update($data);
+
+    return redirect('/admin/products');
+}
 
     public function delete($id)
     {

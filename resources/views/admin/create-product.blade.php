@@ -271,13 +271,18 @@
 
     <div class="card">
 
-        <form action="/admin/products/store" method="POST">
-    @csrf
+     <form action="{{ url('/admin/products/store') }}"
+      method="POST"
+      enctype="multipart/form-data">
+    @csrf   
 
             <div class="group">
-                <label>Бүтээгдэхүүний нэр</label>
-                <input type="text" name="name" placeholder="Жишээ: Chocolate Cake" required>
-            </div>
+    <label>Зураг</label>
+
+    <input type="file"
+           name="image"
+           accept="image/*">
+</div>
 
             <div class="group">
                 <label>Тайлбар</label>
