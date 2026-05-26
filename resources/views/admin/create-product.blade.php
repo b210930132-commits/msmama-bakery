@@ -271,9 +271,7 @@
 
     <div class="card">
 
-     <form action="{{ url('/admin/products/store') }}"
-      method="POST"
-      enctype="multipart/form-data">
+     <form action="{{ url('/admin/products/store') }}" method="POST" enctype="multipart/form-data">
     @csrf   
 
             <div class="group">
@@ -316,12 +314,7 @@
                 </select>
             </div>
 
-            <div class="group">
-                <label>Зураг</label>
-                <input type="text"
-       name="image"
-       placeholder="/image/americano.jpg">
-            </div>
+            
 
             <label class="check">
                 <input type="checkbox" name="featured" value="1">
