@@ -117,7 +117,7 @@ class AdminController extends Controller
         return view('admin.edit-product', compact('product'));
     }
 
-    ppublic function update(Request $request, $id)
+    public function update(Request $request, $id)
 {
     $product = Product::findOrFail($id);
 
