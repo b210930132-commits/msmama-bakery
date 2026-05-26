@@ -8,7 +8,6 @@ use App\Models\OrderItem;
 use App\Models\GiftPackage;
 use App\Models\CustomCake;
 use Illuminate\Http\Request;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class AdminController extends Controller
 {
@@ -95,7 +94,7 @@ class AdminController extends Controller
             'price' => 'required',
             'category' => 'required',
             'stock' => 'required',
-            'image' => 'nullable|string',
+        
         ]);
 
         Product::create($data);
@@ -119,7 +118,7 @@ class AdminController extends Controller
             'description' => 'nullable',
             'price' => 'required',
             'category' => 'required',
-            'image' => 'nullable|string',
+        
         ]);
 
         $product->update($data);
@@ -216,7 +215,6 @@ class AdminController extends Controller
             'label' => 'nullable',
             'description' => 'nullable',
             'price' => 'required',
-            'image' => 'nullable|string',
             'is_active' => 'nullable',
         ]);
 
@@ -254,7 +252,6 @@ class AdminController extends Controller
             'label' => 'nullable',
             'description' => 'nullable',
             'price' => 'required',
-            'image' => 'nullable|string',
             'is_active' => 'nullable',
         ]);
 
